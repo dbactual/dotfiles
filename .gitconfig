@@ -1,0 +1,44 @@
+[push]
+    default = current
+[alias]
+    co = checkout
+    ci = commit
+    cp = cherry-pick
+    desc = describe
+    br = for-each-ref --sort=committerdate --format='%(committerdate:short) %(HEAD)%(HEAD)%(HEAD) %(color:yellow)%(refname:short)%(color:reset)' refs/heads/
+    brr = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+    st = status
+    ll = "log --graph --oneline --decorate --branches --tags --simplify-by-decoration"
+    l1 = "log --graph --date=short --pretty=format:'%Cred%h%Creset %ad -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+    l = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white) %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
+    ch = cherry -v --abbrev
+    l2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold white) %an%C(reset)' --abbrev-commit
+
+    lr = "log --graph --date=short --pretty=format:'%Cred%h%Creset %ad %s' --abbrev-commit"
+    lb = "log --graph --simplify-by-decoration --pretty=format:'%d' --all"
+    co = checkout
+    # show branch from master
+    sb = show-branch --current master
+
+    sy = "!f() { rmb=$(git remote show upstream | grep HEAD | awk '{print $3;}'); echo Syncing master with upstream/${rmb} && git co master && git fetch --tags upstream && git rebase upstream/${rmb} && git push --tags origin master && git co -; }; f"
+    d = diff
+    describe='git describe --long --tags --always --abbrev=10'
+    cb = "rev-parse --abbrev-ref HEAD"
+    harp-changelog = "log --pretty=format:'%s\n\t%ce %cd\n\thttp://git:7990/projects/HARP/repos/harp-core/commits/%H\n'"
+    save = !sh -c 'export PREV=$(git symbolic-ref HEAD|cut -d/ -f3-) && git checkout -b "$1" && git commit -am "$1" && git checkout "$PREV"' -
+    restore = !sh -c 'git cherry-pick -n "$1"' -
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = true
+[core]
+    editor = emacs
+    autocrlf = false
+    fscache = true
+    #pager = less -r
+[user]
+    name = David Berton
+    email = db@dbactual.org
