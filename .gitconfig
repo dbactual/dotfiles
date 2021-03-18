@@ -20,6 +20,8 @@
     # show branch from master
     sb = show-branch --current master
 
+    df = "!git --git-dir=$HOME/src/dotfiles.git/ --work-tree=$HOME"
+
     sy = "!f() { rmb=$(git remote show upstream | grep HEAD | awk '{print $3;}'); echo Syncing master with upstream/${rmb} && git co master && git fetch --tags upstream && git rebase upstream/${rmb} && git push --tags origin master && git co -; }; f"
     d = diff
     describe='git describe --long --tags --always --abbrev=10'

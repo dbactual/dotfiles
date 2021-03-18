@@ -204,6 +204,5 @@ _mk_prompt() {
 }
 export PROMPT_COMMAND=_mk_prompt
 export PATH=/home/db/.cargo/bin:~/src/pyenv/bin:$PATH
-alias dotfiles='/usr/bin/git --git-dir=/home/db/.dotfiles --work-tree=/home/db'
 alias cat=bat
 export PYENV_ROOT="~/src/pyenv"
