@@ -1,0 +1,6 @@
+[submodule ".emacs.d/gptel"]
+	path = .emacs.d/gptel
+	url = git@github.com:karthink/gptel.git
+[submodule ".emacs.d/copilot.el"]
+	path = .emacs.d/copilot.el
+	url = git@github.com:copilot-emacs/copilot.el.git
